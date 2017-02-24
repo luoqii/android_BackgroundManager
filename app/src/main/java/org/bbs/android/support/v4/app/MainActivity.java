@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        mBgM.setColor(Color.CYAN);
+        mBgM.setColor(BackgroundColors.nextColor());
     }
 
     private BackgroundManager prepareBackgroundManager(Activity activity) {
@@ -73,5 +73,18 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static class BackgroundColors {
+        public static int sCount;
+        public static int[] sColors;
+        public static int nextColor(){
+            sCount ++;
+            return sColors[sColors.length % sCount];
+        }
+
+        static {
+            sColors = new int[]{Color.CYAN,Color.RED, Color.YELLOW, Color.BLUE, Color.GREEN};
+        }
     }
 }

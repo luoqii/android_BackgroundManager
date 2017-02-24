@@ -1,10 +1,12 @@
 package org.bbs.android.support.v4.app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import org.bbs.android.support.v4.backgroundmanager.R;
 
@@ -40,11 +42,13 @@ public class DetailActivity extends Activity {
         getWindow().getDecorView().postDelayed(new Runnable() {
             @Override
             public void run() {
-                mBgM.setColor(Color.RED);
+                mBgM.setColor(MainActivity.BackgroundColors.nextColor());
                 mBgM.onActivityResume();
             }
         }, 3000);
     }
+
+
 
     private BackgroundManager prepareBackgroundManager(Activity activity) {
         BackgroundManager bgM = BackgroundManager.getInstance(activity);
@@ -72,5 +76,9 @@ public class DetailActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onClick(View view){
+        startActivity(new Intent(this,DetailActivity.class));
     }
 }
